@@ -40,22 +40,19 @@ class Solution {
   
   private boolean validString(String s) {
     int n = s.length();
-    Deque<Character> stack = new ArrayDeque<>();
+    int count = 0;
     
     for (int i = 0; i < n; i++) {
       char ch = s.charAt(i);
-      if (ch >= 'a' && ch <= 'z') {
-        continue;
-      }
       if (ch == '(') {
-        stack.push(')');
-      } else if (ch == ')') {
-        if (stack.isEmpty())
-          return false;
-        stack.pop();
+        count++;
+      } 
+      
+      if (ch == ')' && count-- == 0) {
+        return false;
       }
     }
     
-    return stack.isEmpty();
+    return count == 0;
   }
 }
