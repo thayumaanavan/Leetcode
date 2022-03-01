@@ -3,20 +3,9 @@ class Solution {
     int[] result = new int[n + 1];
     
     for (int i = 0; i <= n; i++) {
-      result[i] = countOnes(i);
+      result[i] = (i % 2 == 0) ? result[i / 2] : result[i - 1] + 1;
     }
     
     return result;
-  }
-  
-  private int countOnes(int num) {
-    int ones = 0;
-    
-    while (num > 0) {
-      ones += (num % 2 == 0) ? 0 : 1;
-      num = num / 2;
-    }
-    
-    return ones;
   }
 }
